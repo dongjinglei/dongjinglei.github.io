@@ -1,0 +1,525 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar/avatar.jpg">
+  <link rel="icon" href="/img/avatar/avatar.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Dong">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="冒泡排序思想冒泡排序是入门级的排序算法，其思想就是一边比较挨着的两个位置元素的大小一边两两交换，每次都会将最大值冒泡到最后一位。 代码实现代码如下： 1234567891011func bubbleSort(num []int) []int &amp;#123;    n :&#x3D; len(num)    for i :&#x3D; 0; i &lt; n; i++ &amp;#123;        for j :&#x3D; 0;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序算法整理">
+<meta property="og:url" content="http://example.com/2022/01/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Aha moment">
+<meta property="og:description" content="冒泡排序思想冒泡排序是入门级的排序算法，其思想就是一边比较挨着的两个位置元素的大小一边两两交换，每次都会将最大值冒泡到最后一位。 代码实现代码如下： 1234567891011func bubbleSort(num []int) []int &amp;#123;    n :&#x3D; len(num)    for i :&#x3D; 0; i &lt; n; i++ &amp;#123;        for j :&#x3D; 0;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-09T15:33:04.000Z">
+<meta property="article:modified_time" content="2022-02-09T12:37:42.262Z">
+<meta property="article:author" content="Dong">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="排序">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>排序算法整理 - Aha moment</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Aha moment</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/backgroud.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="排序算法整理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-09 23:33" pubdate>
+        2022年1月9日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      36 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">排序算法整理</h1>
+            
+            <div class="markdown-body">
+              <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><p>冒泡排序是入门级的排序算法，其思想就是一边比较挨着的两个位置元素的大小一边两两交换，每次都会将最大值冒泡到最后一位。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>代码如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">bubbleSort</span><span class="hljs-params">(num []<span class="hljs-keyword">int</span>)</span> []<span class="hljs-title">int</span></span> &#123;<br>    n := <span class="hljs-built_in">len</span>(num)<br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; n; i++ &#123;<br>        <span class="hljs-keyword">for</span> j := <span class="hljs-number">0</span>; j &lt; n - <span class="hljs-number">1</span> - i; j++ &#123;<br>            <span class="hljs-keyword">if</span> num[j] &gt; num[j+<span class="hljs-number">1</span>] &#123;<br>                num[j], num[j+<span class="hljs-number">1</span>] = num[j+<span class="hljs-number">1</span>], num[j]<br>            &#125;<br>        &#125;<br>    &#125;<br>	<span class="hljs-keyword">return</span> num<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><p>因为冒泡排序直接在要排序的数组上交换，空间复杂度为O(1)。最坏情况下每次比较都会发生交换，时间复杂度为O(n^2)。</p>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="思想-1"><a href="#思想-1" class="headerlink" title="思想"></a>思想</h3><p>选择排序的思想是：循环数组找到最小值所在的下标，将其交换到首位，然后从第二位开始找剩下元素中的最小值，以此类推处理所有元素。</p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">selectSort</span><span class="hljs-params">(num []<span class="hljs-keyword">int</span>)</span> []<span class="hljs-title">int</span></span> &#123;<br>    n := <span class="hljs-built_in">len</span>(num) <br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; n; i++ &#123;<br>        minPos := i<br>        <span class="hljs-keyword">for</span> j := i+<span class="hljs-number">1</span>; j &lt; n ; j++ &#123;<br>            <span class="hljs-keyword">if</span> num[j] &lt; num[minPos] &#123;<br>                minPos = j<br>            &#125;<br>        &#125;<br>        num[i], num[minPos] = num[minPos], num[i]<br>    &#125;<br>    <span class="hljs-keyword">return</span> num<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="复杂度-1"><a href="#复杂度-1" class="headerlink" title="复杂度"></a>复杂度</h3><p>与冒泡排序相似的是：选择排序也只使用了一个变量来存储最小值下标，因此它的空间复杂度也为O(1)；同样，最坏情况下，需要完整的双重循环将最小值找出，时间复杂度为O(n^2)。<br>但是他们的不同点在于冒泡排序是稳定的，而选择排序在最小值与首位交换的过程中，可能破坏了相同大小元素的顺序，因此选择排序是不稳定的。比如对数组[3,3,1]做升序排序时，把最小值1和首位的3做了交换，就打乱了首位的3与第二位的3的顺序。</p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="思想-2"><a href="#思想-2" class="headerlink" title="思想"></a>思想</h3><p>插入排序的思想很简单，就是拿新的元素在已经排好序的数组中找到合适的位置插入进去。</p>
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">insertSort</span><span class="hljs-params">(num []<span class="hljs-keyword">int</span>)</span> []<span class="hljs-title">int</span></span> &#123;<br>    n := <span class="hljs-built_in">len</span>(num)<br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt; n; i++ &#123;<br>        curVal := num[i]<br>        j := i<span class="hljs-number">-1</span><br>        <span class="hljs-keyword">for</span> j &gt;= <span class="hljs-number">0</span> &amp;&amp; num[j] &gt; curVal &#123;<br>            num[j+<span class="hljs-number">1</span>] = num[j]<br>            j--<br>        &#125;<br>        num[j+<span class="hljs-number">1</span>] = curVal<br>    &#125;<br>    <span class="hljs-keyword">return</span> num<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="复杂度-2"><a href="#复杂度-2" class="headerlink" title="复杂度"></a>复杂度</h3><p>插入排序同样使用常数级的空间，空间复杂度为O(1)。时间复杂度O(n^2)。插入排序是稳定的排序算法。</p>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><h3 id="思想-3"><a href="#思想-3" class="headerlink" title="思想"></a>思想</h3><p>希尔排序由美国数学鄙视Donaid Shell在1959年提出，成为首批将时间复杂度降到O(n^2)以下的算法。<br>希尔算法本质上是对插入排序的一种优化，它的基本思想是：</p>
+<ul>
+<li>将待排序的数组按照一定的间隔分为多个子数组，每组分别进行插入排序。这里按照间隔分组指的不是连续的一段子数组，而是每跳跃一定间隔取一个值组成一组，有点像军训时的报数分组。</li>
+<li>逐渐缩小间隔进行下一轮的排序</li>
+<li>最后一轮时，间隔为1，相当于插入排序。但这时数组已基本有序，所以只需进行少量的交换便可完成。</li>
+</ul>
+<p>希尔排序虽然最终逐渐被快速排序所淘汰，但是它的思想启发出了之后一系列的O(n^2)级以下的排序算法。</p>
+<p>希尔排序为什么能将时间复杂度降低到O(n^2)以下呢？</p>
+<blockquote>
+<p>当我们进行排序时，如果数组中两个数字，前面的数字比后面的数字大，那这两个数组组成一个逆序对。</p>
+<p>排序本质上就是消除逆序对的过程。</p>
+</blockquote>
+<p>对于随机数组，逆序对的数量是 O(n^2) 级的，如果采用“交换相邻元素”的办法来消除逆序对，每次最多只能消除一组逆序对，因此必须执行 O(n^2)级的交换次数，这就是为什么冒泡、插入、选择算法只能到 O(n^2)级的原因。反过来说，基于交换元素的排序算法要想突破 O(n^2)级，必须通过一些比较，交换间隔比较远的元素，使得一次交换能消除一个以上的逆序对。</p>
+<h3 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><br></code></pre></td></tr></table></figure>
+<h3 id="复杂度-3"><a href="#复杂度-3" class="headerlink" title="复杂度"></a>复杂度</h3><p>希尔排序时间复杂度非常难以分析，它的平均复杂度界于 O(n) 和 O(n^2)之间，普遍认为它最好的时间复杂度为 O(n^1.3)。</p>
+<p>希尔排序的空间复杂度为 O(1)，只需要常数级的临时变量。</p>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><h3 id="思想-4"><a href="#思想-4" class="headerlink" title="思想"></a>思想</h3><p>介绍堆排序之前我们先给出堆的定义：</p>
+<blockquote>
+<p>堆是一棵完全二叉树。<br>堆中某个节点的值总是不大于或不小于其父节点的值。将根节点最大的堆叫做最大堆，根节点最小的堆叫做最小堆。</p>
+</blockquote>
+<p>堆排序的思想如下：</p>
+<ul>
+<li>用数组构建成最大堆</li>
+<li>取出根节点的数字，将剩余节点重新构建最大堆，再次取出根节点</li>
+<li>循环往复直至整个堆为空</li>
+</ul>
+<p>堆排序有两个关键的方法，初始化最大堆和调整堆。实现了这两个方法也就基本实现了堆排序。</p>
+<h3 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> MaxHeap <span class="hljs-keyword">struct</span> &#123;<br>    num []<span class="hljs-keyword">int</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">heapSort</span><span class="hljs-params">(num []<span class="hljs-keyword">int</span>)</span> []<span class="hljs-title">int</span></span> &#123;<br>    maxHeap := initMaxHeap(num)<br>    <span class="hljs-keyword">for</span> i := <span class="hljs-built_in">len</span>(num)<span class="hljs-number">-1</span>; i &gt; <span class="hljs-number">0</span>; i-- &#123;<br>        maxHeap.num[i], maxHeap.num[<span class="hljs-number">0</span>] = maxHeap.num[<span class="hljs-number">0</span>], maxHeap.num[i]<br>        maxHeap.heapifyHeap(<span class="hljs-number">0</span>, i)<br>    &#125;<br>    <span class="hljs-keyword">return</span> maxHeap.num<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">initMaxHeap</span><span class="hljs-params">(num []<span class="hljs-keyword">int</span>)</span> <span class="hljs-title">MaxHeap</span></span> &#123;<br>    m := MaxHeap&#123;&#125;<br>    m.num = num<br>    <span class="hljs-keyword">for</span> i := <span class="hljs-built_in">len</span>(num)/<span class="hljs-number">2</span><span class="hljs-number">-1</span>; i &gt;=<span class="hljs-number">0</span>; i-- &#123;<br>        m.heapifyHeap(i, <span class="hljs-built_in">len</span>(num))<br>    &#125;<br>	<span class="hljs-keyword">return</span> m<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(m *MaxHeap)</span> <span class="hljs-title">heapifyHeap</span><span class="hljs-params">(i <span class="hljs-keyword">int</span>, size <span class="hljs-keyword">int</span>)</span></span> &#123;<br>    maxPos := i<br>    <span class="hljs-keyword">if</span> i*<span class="hljs-number">2</span> &lt; size &amp;&amp; m.num[maxPos] &lt; m.num[i*<span class="hljs-number">2</span>] &#123;<br>        maxPos = i*<span class="hljs-number">2</span><br>    &#125;<br>    <span class="hljs-keyword">if</span> i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; size &amp;&amp; m.num[maxPos] &lt; m.num[i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] &#123;<br>        maxPos = i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span><br>    &#125;<br>    <span class="hljs-keyword">if</span> maxPos != i &#123;<br>        m.num[i], m.num[maxPos] = m.num[maxPos], m.num[i]<br>        m.heapifyHeap(maxPos, size)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="复杂度-4"><a href="#复杂度-4" class="headerlink" title="复杂度"></a>复杂度</h3><p>堆排序总的时间复杂度为 O(nlogn), 空间复杂度为 O(1)</p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><h3 id="思想-5"><a href="#思想-5" class="headerlink" title="思想"></a>思想</h3><p>快速排序在大多数情况下比其他几种排序方法效率更高，所以非常受大家欢迎。</p>
+<p>快速排序使用了分治的思想：</p>
+<ul>
+<li>从数组中选取一个数字</li>
+<li>遍历数组，将比选取的数字小的放在它的左边，比选取的数字大的放在它的右边</li>
+<li>以选取数字分割成左右两个数组，递归进行上面的操作<h3 id="代码实现-5"><a href="#代码实现-5" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Array []<span class="hljs-keyword">int</span> <br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(num Array)</span> <span class="hljs-title">subQuickSort</span><span class="hljs-params">(start <span class="hljs-keyword">int</span>, end <span class="hljs-keyword">int</span>)</span></span> &#123;<br>    <span class="hljs-keyword">if</span> start &gt;= end &#123;<br>        <span class="hljs-keyword">return</span><br>    &#125; <br>    splitPos := start<br>    <span class="hljs-keyword">for</span> i := start+<span class="hljs-number">1</span>; i&lt;= end; i++ &#123;<br>       <span class="hljs-keyword">if</span> num[i] &lt;= num[start] &#123;<br>           splitPos++<br>           num[i], num[splitPos] = num[splitPos], num[i]<br>       &#125;<br>    &#125;<br>    num[start], num[splitPos] = num[splitPos], num[start]<br>    num.subQuickSort(start, splitPos<span class="hljs-number">-1</span>)<br>    num.subQuickSort(splitPos+<span class="hljs-number">1</span>, end)<br>&#125; <br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(num []<span class="hljs-keyword">int</span>)</span> []<span class="hljs-title">int</span></span> &#123;<br>	<span class="hljs-keyword">var</span> array Array<br>	array = num<br>    array.subQuickSort(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(num)<span class="hljs-number">-1</span>)<br>    <span class="hljs-keyword">return</span> array<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="复杂度-5"><a href="#复杂度-5" class="headerlink" title="复杂度"></a>复杂度</h3>快速排序的平均时间复杂度为 O(nlogn)，最坏的时间复杂度为 O(n^2)，空间复杂度与递归的层数有关，每层递归会生成一些临时变量，所以空间复杂度为 O(logn) ~ O(n)，平均空间复杂度为 O(logn)<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><h3 id="思想-6"><a href="#思想-6" class="headerlink" title="思想"></a>思想</h3>归并排序同样使用了分治的思想，它的主要思路是：</li>
+<li>每次合并两个有序的数组</li>
+<li>不断拆分，当数组中只有一个元素时，那么它是有序的<h3 id="代码实现-6"><a href="#代码实现-6" class="headerlink" title="代码实现"></a>代码实现</h3></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">mergeSort</span><span class="hljs-params">(num []<span class="hljs-keyword">int</span>)</span> []<span class="hljs-title">int</span></span>&#123;<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(num) &lt;= <span class="hljs-number">1</span> &#123;<br>        <span class="hljs-keyword">return</span> num<br>    &#125;<br>    mid := <span class="hljs-built_in">len</span>(num)/<span class="hljs-number">2</span><br>    left := mergeSort(num[:mid])<br>    right := mergeSort(num[mid:])<br>    <span class="hljs-keyword">return</span> merge(left, right)<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">merge</span><span class="hljs-params">(num1 []<span class="hljs-keyword">int</span>, num2 []<span class="hljs-keyword">int</span>)</span> []<span class="hljs-title">int</span></span> &#123;<br>    l1 := <span class="hljs-built_in">len</span>(num1)<br>    l2 := <span class="hljs-built_in">len</span>(num2)<br>    ans := <span class="hljs-built_in">make</span>([]<span class="hljs-keyword">int</span>, <span class="hljs-number">0</span>)<br>    i1, i2 := <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i1 &lt; l1 &amp;&amp; i2 &lt; l2 &#123;<br>        <span class="hljs-keyword">if</span> num1[i1] &lt; num2[i2] &#123;<br>            ans = <span class="hljs-built_in">append</span>(ans, num1[i1])<br>            i1++<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            ans = <span class="hljs-built_in">append</span>(ans, num2[i2])<br>            i2++<br>        &#125;<br>    &#125;<br>    ans = <span class="hljs-built_in">append</span>(ans, num1[i1:]...)<br>    ans = <span class="hljs-built_in">append</span>(ans, num2[i2:]...)<br>    <span class="hljs-keyword">return</span> ans<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="复杂度-6"><a href="#复杂度-6" class="headerlink" title="复杂度"></a>复杂度</h3><p>归并排序的复杂度比较容易分析，拆分数组的过程中，会将数组拆分 logn 次，每层执行的比较次数都约等于 n 次，所以时间复杂度是 O(nlogn)。空间复杂度是 O(n)，主要占用空间的就是我们在排序前创建的长度为 n 的 result 数组。<br>分析归并的过程可知，归并排序是一种稳定的排序算法<br>由于性能较好，且排序稳定，归并排序应用非常广泛</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/18/%E4%BA%94%E5%88%86%E9%92%9F%E7%90%86%E8%A7%A3%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">五分钟理解软件架构模式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
