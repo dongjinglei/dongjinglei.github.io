@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>认识MQTT协议</title>
+    <link href="/2022/02/25/20220225-getting-to-know-mqtt/"/>
+    <url>/2022/02/25/20220225-getting-to-know-mqtt/</url>
+    
+    <content type="html"><![CDATA[<h1 id="认识MQTT协议"><a href="#认识MQTT协议" class="headerlink" title="认识MQTT协议"></a>认识MQTT协议</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>随着5G时代的来临，网络基础设施的信道能力不断增强，万物互联似乎成为可能，日常生活中可以见到越来越多的设备接入了互联网。可是海量的设备接入和管理对网络带宽、通信协议以及平台服务架构都带来了很大的挑战。</p><p>传统Web领域的通信协议http不再适用于物联网设备，MQTT协议应运而起，凭借简单易实现、报文小、可靠稳定等特点，占领了物联网协议的半壁江山。</p><h2 id="为什么选择MQTT"><a href="#为什么选择MQTT" class="headerlink" title="为什么选择MQTT"></a>为什么选择MQTT</h2><p>主要是MQTT有着以下四个优点：</p><ul><li><p>轻量可靠</p><p>MQTT报文小，可在资源严格首先的硬件设备和低带宽、高延迟的网络上稳定传输</p></li><li><p>生态完善</p><p>协议简单易实现，有着全语言的客户端版本和众多云厂商的使用支持，已经成为了物联网的事实标准</p></li><li><p>采用发布/订阅模式</p><p>基于发布/订阅模式，可以在发布者和订阅者之间实现解耦；发布者与订阅者之间不需要建立直接连接，也不需要同时在线</p></li><li><p>为物联网而设计的众多特性</p><p>提供了心跳机制、遗嘱消息、QoS质量等级、安全管理等全面的物联网应用特性</p></li></ul><h2 id="MQTT协议是什么"><a href="#MQTT协议是什么" class="headerlink" title="MQTT协议是什么"></a>MQTT协议是什么</h2><p>MQTT全称Message Queuing Telemetry Transport，最早由IBM的Andy Stanford-Clark和Arcom的Arlen Nipper两位工程师在90年代早期开发，用于原油管道采集数据的实时传输。</p><p>一开始设计MQTT的时候，两人就制定了一些原则：必须简单容易实现，必须支持 QoS(设备网络环境复杂)，必须轻量且省带宽(因为那时候带宽很贵)，必须数据无关(不关心 Payload 数据格式)，必须有持续地会话感知能力(时刻知道设备是否在线)。MQTT 3.1.1版本的几个核心特性，就对应了这几个设计原则的实现。</p><h2 id="MQTT的几大核心特性"><a href="#MQTT的几大核心特性" class="headerlink" title="MQTT的几大核心特性"></a>MQTT的几大核心特性</h2><h3 id="灵活的发布订阅和主题设计"><a href="#灵活的发布订阅和主题设计" class="headerlink" title="灵活的发布订阅和主题设计"></a>灵活的发布订阅和主题设计</h3><p>发布订阅模式是对传统的客户端服务器模式的完全解耦。发布者（Publisher）通过 中间人（Broker） 与订阅者（Subscriber）之间通信， 中间人（Broker） 的作用是将收到的消息通过订阅者列表，正确地发送给订阅者。发布/订阅模式 相对于 客户端/服务器模式 的好处在于：</p><ul><li><p>发布者和订阅者之间不需要知道对方的通信方式，比如IP</p></li><li><p>发布者和订阅者之间不必同时运行。只要中间人（Broker） 是一直运行的，就可以完成通信。</p></li></ul><p>发布者和订阅者之间的契约是Topic，订阅者（Subscriber）只需告诉中间人（Broker），我要订阅topic是AAA的消息，发布者（Publisher）在发布topic是AAA的消息时，Broker就会把消息推送给订阅者（Subscriber</p><p>MQTT 的 Topic 有层级结构，并且支持通配符 <code>+</code> 和 <code>#</code>:</p><ul><li><p><code>+</code> 是匹配单层的通配符。比如 terminal/+可以匹配到terminal/news</p></li><li><p><code>#</code> 是一到多层的通配符。比如 terminal/#<code>可以匹配</code>terminal<code>、 </code>terminal/news、terminal/news/1</p></li></ul><p>MQTT 的主题是不要预先创建的，发布者（Publisher）发送消息到某个主题、或者订阅者（Subscriber）订阅某个主题的时候，中间人（Broker）就会自动创建这个主题。</p><h3 id="报文轻量，对带宽要求低"><a href="#报文轻量，对带宽要求低" class="headerlink" title="报文轻量，对带宽要求低"></a>报文轻量，对带宽要求低</h3><p>MQTT 协议将协议本身占用的额外消耗最小化，消息头部最小只需要占用 2 个字节。</p><p>MQTT 的消息格式分三部分：</p><table><thead><tr><th>Fixed header</th><th>固定报头，所有控制报文都包含</th></tr></thead><tbody><tr><td>Variable header</td><td>可变报头，部分控制报文包含</td></tr><tr><td>Payload</td><td>有效载荷，部分控制报文包含</td></tr></tbody></table><p>固定报头的格式：</p><table>  <tr>      <td>Bit</td>      <td>7</td>      <td>6</td>      <td>5</td>      <td>4</td>      <td>3</td>      <td>2</td>      <td>1</td>      <td>0</td>  </tr>  <tr>      <td>byte 1</td>      <td colspan="4">MQTT控制报文的类型</td>      <td colspan="4">用于指定控制报文类型的标志位</td>  </tr>  <tr>      <td>byte 2</td>      <td colspan="8">剩余长度</td>  </tr></table><p>MQTT 的主要消息类型有：</p><table><thead><tr><th><strong>名字</strong></th><th><strong>值</strong></th><th><strong>报文流动方向</strong></th><th><strong>描述</strong></th></tr></thead><tbody><tr><td>Reserved</td><td>0</td><td>禁止</td><td>保留</td></tr><tr><td>CONNECT</td><td>1</td><td>客户端到服务端</td><td>客户端请求连接服务端</td></tr><tr><td>CONNACK</td><td>2</td><td>服务端到客户端</td><td>连接报文确认</td></tr><tr><td>PUBLISH</td><td>3</td><td>两个方向都允许</td><td>发布消息</td></tr><tr><td>PUBACK</td><td>4</td><td>两个方向都允许</td><td>QoS 1消息发布收到确认</td></tr><tr><td>PUBREC</td><td>5</td><td>两个方向都允许</td><td>发布收到（保证交付第一步）</td></tr><tr><td>PUBREL</td><td>6</td><td>两个方向都允许</td><td>发布释放（保证交付第二步）</td></tr><tr><td>PUBCOMP</td><td>7</td><td>两个方向都允许</td><td>QoS 2消息发布完成（保证交互第三步）</td></tr><tr><td>SUBSCRIBE</td><td>8</td><td>客户端到服务端</td><td>客户端订阅请求</td></tr><tr><td>SUBACK</td><td>9</td><td>服务端到客户端</td><td>订阅请求报文确认</td></tr><tr><td>UNSUBSCRIBE</td><td>10</td><td>客户端到服务端</td><td>客户端取消订阅请求</td></tr><tr><td>UNSUBACK</td><td>11</td><td>服务端到客户端</td><td>取消订阅报文确认</td></tr><tr><td>PINGREQ</td><td>12</td><td>客户端到服务端</td><td>心跳请求</td></tr><tr><td>PINGRESP</td><td>13</td><td>服务端到客户端</td><td>心跳响应</td></tr><tr><td>DISCONNECT</td><td>14</td><td>客户端到服务端</td><td>客户端断开连接</td></tr><tr><td>Reserved</td><td>15</td><td>禁止</td><td>保留</td></tr></tbody></table><p>其中 PINGREQ / PINGRESP 和 DISCONNECT 报文是不需要可变头部的，也没有 Payload，也就是说它们的报文大小仅仅消耗 2 个字节。</p><p>在 CONNECT 报文的可变长度头部里，有个 Protocol Version 的字段。为了节省空间，只有一个字节。所以版本号不是按照字符串 “3.1.1” 存放的，而是使用数字 4 来表示 3.1.1 版本。</p><h3 id="可选的-QoS-等级"><a href="#可选的-QoS-等级" class="headerlink" title="可选的 QoS 等级"></a>可选的 QoS 等级</h3><p>为适应设备不同的网络环境，MQTT 设计了 3 个 QoS 等级，0, 1, 2:</p><ul><li><p><em>At most once</em> (0)</p></li><li><p><em>At least once</em> (1)</p></li><li><p><em>Exactly once</em> (2)</p></li></ul><p>QoS 0 是一种 “fire and forget” 的消息发送模式：Sender (可能是 Publisher 或者 Broker) 发送一条消息之后，就不再关心它有没有发送到对方，也不设置任何重发机制。</p><p>QoS 1 包含了简单的重发机制，Sender 发送消息之后等待接收者的 ACK，如果没收到 ACK 则重新发送消息。这种模式能保证消息至少能到达一次，但无法保证消息重复。</p><p>QoS 2 设计了略微复杂的重发和重复消息发现机制，保证消息到达对方并且严格只到达一次。</p><h3 id="会话保持"><a href="#会话保持" class="headerlink" title="会话保持"></a>会话保持</h3><p>MQTT 没有假设设备或 Broker 使用了 TCP 的保活机制，而是设计了协议层的保活机制：在 CONNECT 报文里可设置 Keepalive 字段，来设置保活心跳包 PINGREQ/PINGRESP 的发送时间间隔。当长时间无法收到设备的 PINGREQ 的时候，Broker 就会认为设备已经下线。</p><p>总的来说，Keepalive 有两个作用：</p><ul><li><p>发现对端死亡或者网络中断</p></li><li><p>在长时间无消息交互的情况下，保持连接不被网络设备断开</p></li></ul><p>对于那些想要在重新上线后，重新收到离线期间错过的消息的设备，MQTT 设计了持久化连接：在 CONNECT 报文里可设置 CleanSession 字段为 False，则 Broker 会为终端存储：</p><ul><li><p>设备所有的订阅</p></li><li><p>还未被设备确认的 QoS1 和 QoS 消息</p></li><li><p>设备离线时错过的消息</p></li></ul><h3 id="在线状态感知"><a href="#在线状态感知" class="headerlink" title="在线状态感知"></a>在线状态感知</h3><p>MQTT 设计了遗愿(Last Will) 消息，让 Broker 在发现设备异常下线的情况下，帮助设备发布一条遗愿消息到指定的主题。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MQTT</tag>
+      
+      <tag>物联网</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>五分钟理解软件架构模式</title>
     <link href="/2022/01/18/20220209-five-minutes-to-understand-software-architecture-patterns/"/>
     <url>/2022/01/18/20220209-five-minutes-to-understand-software-architecture-patterns/</url>
