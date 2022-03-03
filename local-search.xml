@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>信号和信号量</title>
+    <link href="/2022/02/28/20220228-signal-and-semaphore/"/>
+    <url>/2022/02/28/20220228-signal-and-semaphore/</url>
+    
+    <content type="html"><![CDATA[<h1 id="信号和信号量"><a href="#信号和信号量" class="headerlink" title="信号和信号量"></a>信号和信号量</h1><p>信号与信号量，经常有人搞混这两个词的含义，其实这是因为他们的中文翻译太接近了。如果使用英文表达信号（Signal）和信号量（Semaphone），想必就没有人会搞混了。</p><h2 id="信号（Signal）"><a href="#信号（Signal）" class="headerlink" title="信号（Signal）"></a>信号（Signal）</h2><p>信号（Singal）是Unix、类Unix以及其他兼容POSIX操作系统中进程间通信的一种有限制的方式，是一种异步的通知机制，用来提醒进程一个事件已经发生。当一个信号发送给一个进程时，操作系统会终端进程正常的控制流程，此时任何非原子操作都会被中断。如果进程定义了信号的处理函数，那么它将被执行，否则就执行默认的处理函数。</p><p>下面是常见的信号量和事件描述</p><table><thead><tr><th>序号</th><th>名称</th><th>默认行为</th><th>相应事件</th></tr></thead><tbody><tr><td>1</td><td>SIGHUP</td><td>终止</td><td>终端线挂断，现在操作系统，该信号通常意味着使用的虚拟终端已经被关闭。nohup命令用于无视该信号</td></tr><tr><td>2</td><td>SIGINT</td><td>终止interrupt</td><td>来自键盘的中断，Ctrl-C</td></tr><tr><td>3</td><td>SIGQUIT</td><td>终止</td><td>来自键盘的退出，Ctrl-\</td></tr><tr><td>4</td><td>SIGILL</td><td>终止</td><td>非法指令</td></tr><tr><td>5</td><td>SIGTRAP</td><td>终止并转储存储器</td><td>跟踪陷阱</td></tr><tr><td>6</td><td>SIGABRT</td><td>终止并转储存储器</td><td>来自abort函数的终止信号</td></tr><tr><td>7</td><td>SIGBUS</td><td>终止</td><td>总线错误</td></tr><tr><td>8</td><td>SIGFPE</td><td>终止并转储存储器</td><td>浮点异常</td></tr><tr><td>9</td><td>SIGKILL</td><td>终止</td><td>杀死进程</td></tr><tr><td>15</td><td>SIGTERM</td><td>终止</td><td>软件终止信号</td></tr><tr><td>20</td><td>SIGTSTP</td><td>挂起直到下一个SIGCONT</td><td>来自终端的挂起信号。会导致进程挂起。SIGTSTP信号的产生通常是由于用户按下Ctrl+Z。</td></tr></tbody></table><h2 id="信号量（Semaphone）"><a href="#信号量（Semaphone）" class="headerlink" title="信号量（Semaphone）"></a>信号量（Semaphone）</h2><p>信号量（Semaphone）又被称为信号标或信号灯，是操作系统中用于解决多个程序访问同一个共享资源引发竞争问题的机制。信号量本身其实是一个原子操作的特殊变量，如果变量只能取0和1，这种我们叫做二进制信号量。而可以取多个回合正整数的信号量被称为计数信号量或通用信号量。</p><p>计数信号量具备两种操作动作，称为P（<code>wait()</code>）V（<code>signal()</code>）：</p><p>当进程企图进入临界区段时，需要先执行P（<code>wait()</code>），将信号量S的值减少。当信号量S减为负值时，进程会挂起不能继续执行。当信号量不为负值时，可以进入临界区。</p><p>当进程离开临界区段时，需要执行V（<code>signal()</code>），将信号量S增加。当信号量S不为负值时，先前被挡住的其他进程，可以获准进入临界区段。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>信号</tag>
+      
+      <tag>信号量</tag>
+      
+      <tag>Linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>认识MQTT协议</title>
     <link href="/2022/02/25/20220225-getting-to-know-mqtt/"/>
     <url>/2022/02/25/20220225-getting-to-know-mqtt/</url>
