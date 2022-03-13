@@ -16,23 +16,22 @@
   <meta name="author" content="Dong">
   <meta name="keywords" content="">
   
-    <meta name="description" content="信号和信号量信号与信号量，经常有人搞混这两个词的含义，其实这是因为他们的中文翻译太接近了。如果使用英文表达信号（Signal）和信号量（Semaphone），想必就没有人会搞混了。 信号（Signal）信号（Singal）是Unix、类Unix以及其他兼容POSIX操作系统中进程间通信的一种有限制的方式，是一种异步的通知机制，用来提醒进程一个事件已经发生。当一个信号发送给一个进程时，操作系统会终端">
+    <meta name="description" content="MQTT会话机制什么是会话会话（Session）在系统设计中很常见，是客户端与服务端进行一次通讯的过程。这里的一次通讯指的并不是一次建立连接断开连接的过程，而是业务上完成通讯的过程，一个会话可能跨多个网路连接而存在。通过存储已建立的会话，服务器可以确定每次请求关联的客户端是否是同一个。 什么是会话状态？MQTT要求客户端与服务端在会话有效期内存储一系列与客户端标识相关联的状态，称之为会话状态。 客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="信号和信号量">
-<meta property="og:url" content="http://example.com/2022/02/28/20220228-signal-and-semaphore/index.html">
+<meta property="og:title" content="MQTT会话机制">
+<meta property="og:url" content="http://example.com/2022/03/13/20220313-mqtt-session/index.html">
 <meta property="og:site_name" content="Aha moment">
-<meta property="og:description" content="信号和信号量信号与信号量，经常有人搞混这两个词的含义，其实这是因为他们的中文翻译太接近了。如果使用英文表达信号（Signal）和信号量（Semaphone），想必就没有人会搞混了。 信号（Signal）信号（Singal）是Unix、类Unix以及其他兼容POSIX操作系统中进程间通信的一种有限制的方式，是一种异步的通知机制，用来提醒进程一个事件已经发生。当一个信号发送给一个进程时，操作系统会终端">
+<meta property="og:description" content="MQTT会话机制什么是会话会话（Session）在系统设计中很常见，是客户端与服务端进行一次通讯的过程。这里的一次通讯指的并不是一次建立连接断开连接的过程，而是业务上完成通讯的过程，一个会话可能跨多个网路连接而存在。通过存储已建立的会话，服务器可以确定每次请求关联的客户端是否是同一个。 什么是会话状态？MQTT要求客户端与服务端在会话有效期内存储一系列与客户端标识相关联的状态，称之为会话状态。 客">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-02-28T14:49:07.000Z">
-<meta property="article:modified_time" content="2022-03-03T14:18:32.118Z">
+<meta property="article:published_time" content="2022-03-13T12:31:44.000Z">
+<meta property="article:modified_time" content="2022-03-13T12:33:53.522Z">
 <meta property="article:author" content="Dong">
-<meta property="article:tag" content="信号">
-<meta property="article:tag" content="信号量">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="MQTT">
+<meta property="article:tag" content="物联网">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>信号和信号量 - Aha moment</title>
+  <title>MQTT会话机制 - Aha moment</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -178,7 +177,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="信号和信号量">
+            <span class="h2" id="subtitle" title="MQTT会话机制">
               
             </span>
 
@@ -188,8 +187,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-28 22:49" pubdate>
-        2022年2月28日 晚上
+      <time datetime="2022-03-13 20:31" pubdate>
+        2022年3月13日 晚上
       </time>
     </span>
   
@@ -199,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      925 字
+      595 字
     </span>
   
 
@@ -208,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      5 分钟
     </span>
   
 
@@ -237,92 +236,28 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">信号和信号量</h1>
+            <h1 style="display: none">MQTT会话机制</h1>
             
             <div class="markdown-body">
-              <h1 id="信号和信号量"><a href="#信号和信号量" class="headerlink" title="信号和信号量"></a>信号和信号量</h1><p>信号与信号量，经常有人搞混这两个词的含义，其实这是因为他们的中文翻译太接近了。如果使用英文表达信号（Signal）和信号量（Semaphone），想必就没有人会搞混了。</p>
-<h2 id="信号（Signal）"><a href="#信号（Signal）" class="headerlink" title="信号（Signal）"></a>信号（Signal）</h2><p>信号（Singal）是Unix、类Unix以及其他兼容POSIX操作系统中进程间通信的一种有限制的方式，是一种异步的通知机制，用来提醒进程一个事件已经发生。当一个信号发送给一个进程时，操作系统会终端进程正常的控制流程，此时任何非原子操作都会被中断。如果进程定义了信号的处理函数，那么它将被执行，否则就执行默认的处理函数。</p>
-<p>下面是常见的信号量和事件描述</p>
-<table>
-<thead>
-<tr>
-<th>序号</th>
-<th>名称</th>
-<th>默认行为</th>
-<th>相应事件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>SIGHUP</td>
-<td>终止</td>
-<td>终端线挂断，现在操作系统，该信号通常意味着使用的虚拟终端已经被关闭。nohup命令用于无视该信号</td>
-</tr>
-<tr>
-<td>2</td>
-<td>SIGINT</td>
-<td>终止interrupt</td>
-<td>来自键盘的中断，Ctrl-C</td>
-</tr>
-<tr>
-<td>3</td>
-<td>SIGQUIT</td>
-<td>终止</td>
-<td>来自键盘的退出，Ctrl-\</td>
-</tr>
-<tr>
-<td>4</td>
-<td>SIGILL</td>
-<td>终止</td>
-<td>非法指令</td>
-</tr>
-<tr>
-<td>5</td>
-<td>SIGTRAP</td>
-<td>终止并转储存储器</td>
-<td>跟踪陷阱</td>
-</tr>
-<tr>
-<td>6</td>
-<td>SIGABRT</td>
-<td>终止并转储存储器</td>
-<td>来自abort函数的终止信号</td>
-</tr>
-<tr>
-<td>7</td>
-<td>SIGBUS</td>
-<td>终止</td>
-<td>总线错误</td>
-</tr>
-<tr>
-<td>8</td>
-<td>SIGFPE</td>
-<td>终止并转储存储器</td>
-<td>浮点异常</td>
-</tr>
-<tr>
-<td>9</td>
-<td>SIGKILL</td>
-<td>终止</td>
-<td>杀死进程</td>
-</tr>
-<tr>
-<td>15</td>
-<td>SIGTERM</td>
-<td>终止</td>
-<td>软件终止信号</td>
-</tr>
-<tr>
-<td>20</td>
-<td>SIGTSTP</td>
-<td>挂起直到下一个SIGCONT</td>
-<td>来自终端的挂起信号。会导致进程挂起。SIGTSTP信号的产生通常是由于用户按下Ctrl+Z。</td>
-</tr>
-</tbody></table>
-<h2 id="信号量（Semaphone）"><a href="#信号量（Semaphone）" class="headerlink" title="信号量（Semaphone）"></a>信号量（Semaphone）</h2><p>信号量（Semaphone）又被称为信号标或信号灯，是操作系统中用于解决多个程序访问同一个共享资源引发竞争问题的机制。信号量本身其实是一个原子操作的特殊变量，如果变量只能取0和1，这种我们叫做二进制信号量。而可以取多个回合正整数的信号量被称为计数信号量或通用信号量。</p>
-<p>计数信号量具备两种操作动作，称为P（<code>wait()</code>）V（<code>signal()</code>）：</p>
-<p>当进程企图进入临界区段时，需要先执行P（<code>wait()</code>），将信号量S的值减少。当信号量S减为负值时，进程会挂起不能继续执行。当信号量不为负值时，可以进入临界区。</p>
-<p>当进程离开临界区段时，需要执行V（<code>signal()</code>），将信号量S增加。当信号量S不为负值时，先前被挡住的其他进程，可以获准进入临界区段。</p>
+              <h1 id="MQTT会话机制"><a href="#MQTT会话机制" class="headerlink" title="MQTT会话机制"></a>MQTT会话机制</h1><h2 id="什么是会话"><a href="#什么是会话" class="headerlink" title="什么是会话"></a>什么是会话</h2><p>会话（Session）在系统设计中很常见，是客户端与服务端进行一次通讯的过程。这里的一次通讯指的并不是一次建立连接断开连接的过程，而是业务上完成通讯的过程，一个会话可能跨多个网路连接而存在。通过存储已建立的会话，服务器可以确定每次请求关联的客户端是否是同一个。</p>
+<h2 id="什么是会话状态？"><a href="#什么是会话状态？" class="headerlink" title="什么是会话状态？"></a>什么是会话状态？</h2><p>MQTT要求客户端与服务端在会话有效期内存储一系列与客户端标识相关联的状态，称之为会话状态。</p>
+<p>客户端需要存储以下会话状态：</p>
+<ul>
+<li>已发送给服务端，但是还没有完成确认的 QoS 1 与 QoS 2 消息。</li>
+<li>从服务端收到的，但是还没有完成确认的 QoS 2 消息。</li>
+</ul>
+<p>服务端需要存储以下会话状态：</p>
+<ul>
+<li>会话是否存在，即使会话状态其余部分为空。</li>
+<li>客户端订阅信息，包括任何订阅标识符。</li>
+<li>已发送给客户端，但是还没有完成确认的 QoS 1 与 QoS 2 消息。</li>
+<li>等待传输给客户端的 QoS 0 消息（可选），QoS 1 与 QoS 2 消息。</li>
+<li>从客户端收到的，但是还没有完成确认的 QoS 2 消息，遗嘱消息和遗嘱延时间隔。</li>
+<li>会话过期时间。</li>
+</ul>
+<h2 id="如何设置会话保持"><a href="#如何设置会话保持" class="headerlink" title="如何设置会话保持"></a>如何设置会话保持</h2><p>MQTT v3.1.1版本只有一个Clean Session字段，由客户端在连接时指定：</p>
+<p>为 1 表示客户端和服务器必须丢弃任何先前的会话并创建一个新的会话，且这个会话的生命周期与网络连接保持一致；</p>
+<p>为 0 则表示服务端必须使用与 Client ID 关联的会话来恢复与客户端的通信（除非会话不存在），客户端和服务器在断开连接后必须存储会话的状态。</p>
 
             </div>
             <hr>
@@ -340,11 +275,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E4%BF%A1%E5%8F%B7/">信号</a>
+                      <a class="hover-with-bg" href="/tags/MQTT/">MQTT</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E4%BF%A1%E5%8F%B7%E9%87%8F/">信号量</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                      <a class="hover-with-bg" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/">物联网</a>
                     
                   </div>
                 
@@ -361,18 +294,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/13/20220313-mqtt-session/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MQTT会话机制</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/25/20220225-getting-to-know-mqtt/">
-                        <span class="hidden-mobile">认识MQTT协议</span>
+                      <a href="/2022/02/28/20220228-signal-and-semaphore/">
+                        <span class="hidden-mobile">信号和信号量</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>MQTT会话机制</title>
+    <link href="/2022/03/13/20220313-mqtt-session/"/>
+    <url>/2022/03/13/20220313-mqtt-session/</url>
+    
+    <content type="html"><![CDATA[<h1 id="MQTT会话机制"><a href="#MQTT会话机制" class="headerlink" title="MQTT会话机制"></a>MQTT会话机制</h1><h2 id="什么是会话"><a href="#什么是会话" class="headerlink" title="什么是会话"></a>什么是会话</h2><p>会话（Session）在系统设计中很常见，是客户端与服务端进行一次通讯的过程。这里的一次通讯指的并不是一次建立连接断开连接的过程，而是业务上完成通讯的过程，一个会话可能跨多个网路连接而存在。通过存储已建立的会话，服务器可以确定每次请求关联的客户端是否是同一个。</p><h2 id="什么是会话状态？"><a href="#什么是会话状态？" class="headerlink" title="什么是会话状态？"></a>什么是会话状态？</h2><p>MQTT要求客户端与服务端在会话有效期内存储一系列与客户端标识相关联的状态，称之为会话状态。</p><p>客户端需要存储以下会话状态：</p><ul><li>已发送给服务端，但是还没有完成确认的 QoS 1 与 QoS 2 消息。</li><li>从服务端收到的，但是还没有完成确认的 QoS 2 消息。</li></ul><p>服务端需要存储以下会话状态：</p><ul><li>会话是否存在，即使会话状态其余部分为空。</li><li>客户端订阅信息，包括任何订阅标识符。</li><li>已发送给客户端，但是还没有完成确认的 QoS 1 与 QoS 2 消息。</li><li>等待传输给客户端的 QoS 0 消息（可选），QoS 1 与 QoS 2 消息。</li><li>从客户端收到的，但是还没有完成确认的 QoS 2 消息，遗嘱消息和遗嘱延时间隔。</li><li>会话过期时间。</li></ul><h2 id="如何设置会话保持"><a href="#如何设置会话保持" class="headerlink" title="如何设置会话保持"></a>如何设置会话保持</h2><p>MQTT v3.1.1版本只有一个Clean Session字段，由客户端在连接时指定：</p><p>为 1 表示客户端和服务器必须丢弃任何先前的会话并创建一个新的会话，且这个会话的生命周期与网络连接保持一致；</p><p>为 0 则表示服务端必须使用与 Client ID 关联的会话来恢复与客户端的通信（除非会话不存在），客户端和服务器在断开连接后必须存储会话的状态。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MQTT</tag>
+      
+      <tag>物联网</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>信号和信号量</title>
     <link href="/2022/02/28/20220228-signal-and-semaphore/"/>
     <url>/2022/02/28/20220228-signal-and-semaphore/</url>
