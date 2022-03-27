@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>位运算</title>
+    <link href="/2022/03/27/20220327-bitwise/"/>
+    <url>/2022/03/27/20220327-bitwise/</url>
+    
+    <content type="html"><![CDATA[<h2 id="1-位运算简介"><a href="#1-位运算简介" class="headerlink" title="1.位运算简介"></a>1.位运算简介</h2><p>我们都知道在计算机中通常采用二进制存储数据。而位运算就是直接对内存中的二进制进行运算。由于位运算不需要先将数据转换成十进制，因此位运算十分高效。我们经常会利用位运算的这一特点优化程序的执行速度。</p><h2 id="2-常用的位运算操作"><a href="#2-常用的位运算操作" class="headerlink" title="2.常用的位运算操作"></a>2.常用的位运算操作</h2><h3 id="2-1-与-amp"><a href="#2-1-与-amp" class="headerlink" title="2.1 与 &amp;"></a>2.1 与 &amp;</h3><p>两个位都为1时，结果才为1</p><p>与运算常用于：</p><p>1）清零</p><p>如果想将一个单元清零，即使其全部二进制位为0，只要与一个各位都为零的数值相与，结果为零。</p><p>2）取一个数的指定位</p><p>比如取数 X=1010 1110 的低4位，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行按位与运算（X&amp;Y=0000 1110）即可得到X的指定位。</p><p>3）判断奇偶</p><p>只要根据最未位是0还是1来决定，为0就是偶数，为1就是奇数。因此可以用if ((a &amp; 1) == 0)代替if (a % 2 == 0)来判断a是不是偶数。</p><h3 id="2-2-或"><a href="#2-2-或" class="headerlink" title="2.2 或|"></a>2.2 或|</h3><p>两个位都为0时，结果才为0</p><p>或运算常用于：</p><p>1）常用来对一个数据的某些位设置为1</p><p>比如将数 X=1010 1110 的低4位设置为1，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行按位或运算（X|Y=1010 1111）即可得到。</p><h3 id="2-3-异或"><a href="#2-3-异或" class="headerlink" title="2.3 异或 ^"></a>2.3 异或 ^</h3><p>两个位相同为0，相异为1</p><p>异或运算常用于：</p><p>1）翻转指定位</p><p>比如将数 X=1010 1110 的低4位进行翻转，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行异或运算（X^Y=1010 0001）即可得到。</p><p>2）与0相异或值不变</p><p>例如：1010 1110 ^ 0000 0000 = 1010 1110</p><h3 id="2-4-左移位-lt-lt-右移位-gt-gt"><a href="#2-4-左移位-lt-lt-右移位-gt-gt" class="headerlink" title="2.4 左移位&lt;&lt;  右移位&gt;&gt;"></a>2.4 左移位&lt;&lt;  右移位&gt;&gt;</h3><h3 id="2-5-取反"><a href="#2-5-取反" class="headerlink" title="2.5 取反 ~"></a>2.5 取反 ~</h3><p>0变1，1变0</p><h2 id="3-常用的位运算技巧"><a href="#3-常用的位运算技巧" class="headerlink" title="3.常用的位运算技巧"></a>3.常用的位运算技巧</h2><h3 id="3-1消除二进制最后一个1"><a href="#3-1消除二进制最后一个1" class="headerlink" title="3.1消除二进制最后一个1"></a>3.1消除二进制最后一个1</h3><figure class="highlight go"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs go">num &amp; (num - <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure><p>num - 1会将最后一个1的位置置为0，并将最后一个1后面的0全部置为1，与原本的num进行&amp;运算就会消掉最后一个1。</p><p>结合下面一个例子来看会更清晰：</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs go">num           = <span class="hljs-number">010010100</span><br>num<span class="hljs-number">-1</span>         = <span class="hljs-number">010010011</span><br>num &amp; (num<span class="hljs-number">-1</span>) = <span class="hljs-number">010010000</span><br></code></pre></td></tr></table></figure><h3 id="3-2获取二进制最后一个1的位置"><a href="#3-2获取二进制最后一个1的位置" class="headerlink" title="3.2获取二进制最后一个1的位置"></a>3.2获取二进制最后一个1的位置</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">num &amp; -num<br></code></pre></td></tr></table></figure><p>二进制的负数等于原码的补码加一，补码即为原码取反，与原本的num进行&amp;运算就会只保留最后一个1</p><p>还是以num为010010100来看这个过程：</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-built_in">num</span>          = <span class="hljs-number">010010100</span><br>-<span class="hljs-built_in">num</span>         = <span class="hljs-number">101101100</span><br><span class="hljs-built_in">num</span> &amp; (-<span class="hljs-built_in">num</span>) = <span class="hljs-number">000000100</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+      <tag>位运算</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MQTT会话机制</title>
     <link href="/2022/03/13/20220313-mqtt-session/"/>
     <url>/2022/03/13/20220313-mqtt-session/</url>
