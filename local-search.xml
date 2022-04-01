@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>一些有趣的软件开发定律</title>
+    <link href="/2022/04/01/20220401-software-develop-laws/"/>
+    <url>/2022/04/01/20220401-software-develop-laws/</url>
+    
+    <content type="html"><![CDATA[<p>作为程序员在开发软件时经常听到一些有趣的定律，在真的经历过一些项目后，才感觉这些定律真的很经典，时间过了这么久也都适用，在此总结记录下来。</p><h2 id="康威定律-Conway’s-Law"><a href="#康威定律-Conway’s-Law" class="headerlink" title="康威定律 Conway’s Law"></a>康威定律 Conway’s Law</h2><blockquote><p>软件系统的架构，反映了公司的组织结构。</p></blockquote><p>这个定律说，公司的行政组织架构，会体现在软件架构里。为什么会这样呢？主要是因为一个组件内的设计与开发活动需要频繁的沟通，而跨部门交流会比较困难，所以设计开发人员倾向于在部门内的组件完成一个功能，只有实现不了才会想向其他组件提需求。于是逐渐的软件架构就会变得与公司组织结构一致。</p><h2 id="安迪-比尔定律-Andy-and-Bill’s-Law"><a href="#安迪-比尔定律-Andy-and-Bill’s-Law" class="headerlink" title="安迪-比尔定律 Andy and Bill’s Law"></a>安迪-比尔定律 Andy and Bill’s Law</h2><blockquote><p>硬件升级提高的计算能力，总会被软件升级耗尽。</p></blockquote><p>这条定律来自于1990年计算机会议上的一句小笑话。当时安迪是英特尔的CEO，比尔盖茨是微软的CEO。”安迪给的，比尔都会拿走”。英特尔芯片升级提高的计算能力，最终都会被window操作系统耗尽。</p><p>这条定律放到现在智能手机上也依然适用，尽管我们已经每1~2年更换最新最先进硬件的手机，但是运行一段时间后依然会觉得卡顿。这其实是因为我们升级了手机操作系统和应用软件，这些软件倾向于消耗更多的资源，提供更好的体验。软件升级带来的手机系统卡顿又会推动我们不断更新自己的设备，对硬件厂商其实也是有利的。</p><p>但是随着硬件器件的尺寸越来越接近物理极限，硬件计算能力的提升已经出现了放缓的趋势。而另一方面随着互联网的发展，需要计算的数据越来越多。对于我们软件开发人员来说，还是应该在开发过程中时刻关注代码的性能，不能像以前那样“任性”的浪费了。</p><h2 id="墨菲定律-Murphy’s-Law"><a href="#墨菲定律-Murphy’s-Law" class="headerlink" title="墨菲定律 Murphy’s Law"></a>墨菲定律 Murphy’s Law</h2><blockquote><p>如果事情可能出错，它就会出错。</p></blockquote><p>这可能是最著名的定律之一了。对这条定律我的感悟有以下几点：</p><p>1.尽量用自动化代替手工操作。人是会犯错的，在整套系统中，最不可靠、容易攻破的可能就是人。所以我们要尽量用机器自动化操作去替换手工操作。并不是说机器不会犯错，而是概率比手工要小。</p><p>2.在做软件时要防御性编程原则，尽量减少用户可能的犯错。</p><h2 id="霍夫施塔特定律-Hofstadter’s-Law"><a href="#霍夫施塔特定律-Hofstadter’s-Law" class="headerlink" title="霍夫施塔特定律 Hofstadter’s Law"></a>霍夫施塔特定律 Hofstadter’s Law</h2><blockquote><p>即使你考虑到了霍夫施塔特定律，项目的实际完成时间总是比预期的要长。</p></blockquote><p>定律中自带递归，很有程序员的特点。项目的具体开发过程总是会出现一些意外的问题，可能是技术、人力甚至是大环境的改变。所以我们在预估工作量时，永远无法精确估计工作量。所以总是要考虑留一些余量。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>软件开发定律</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>记一次线上CPU占用超过100%问题定位</title>
     <link href="/2022/03/30/20220330-record-to-slove-the-problem-CPU-exceeds-100/"/>
     <url>/2022/03/30/20220330-record-to-slove-the-problem-CPU-exceeds-100/</url>
