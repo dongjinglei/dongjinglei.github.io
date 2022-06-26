@@ -16,27 +16,24 @@
   <meta name="author" content="Dong">
   <meta name="keywords" content="">
   
-    <meta name="description" content="常见的限流算法介绍和选型近期接了一个可靠性提升的任务，要求系统能在10倍规格负载下保持不崩溃，仍能处理性能规格的业务。这里需要用到限流（也称流控）的方式去控制流入的请求数量，也借此机会好好梳理了常见的限流算法，并分析了下优缺点，方便后面进行选型。 计数器计数器算法又称固定窗口算法，是最简单的限流算法。通过在单位时间内维护的计数器来控制单位时间的最大访问量。 假设限制每分钟请求量不超过60，设置一个">
+    <meta name="description" content="Scrum介绍Scrum是什么Scrum是一种通过迭代实现增量软件开发过程，通常用在敏捷软件开发中。在这个框架中，整个开发过程由若干个短的迭代周期组成，一个短的迭代周期称为一个Sprint，每个Sprint的建议长度是一至四周。在Scrum中，使用产品Backlog来管理产品的需求，产品backlog是一个按照商业价值排序的需求列表，列表条目的体现形式通常为用户故事。Scrum团队总是先开发对客户">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见的限流算法介绍和选型">
-<meta property="og:url" content="http://example.com/2022/04/24/20220424-flow-control/index.html">
+<meta property="og:title" content="Scrum介绍">
+<meta property="og:url" content="http://example.com/2022/06/26/20220626-scrum-introduction/index.html">
 <meta property="og:site_name" content="Aha moment">
-<meta property="og:description" content="常见的限流算法介绍和选型近期接了一个可靠性提升的任务，要求系统能在10倍规格负载下保持不崩溃，仍能处理性能规格的业务。这里需要用到限流（也称流控）的方式去控制流入的请求数量，也借此机会好好梳理了常见的限流算法，并分析了下优缺点，方便后面进行选型。 计数器计数器算法又称固定窗口算法，是最简单的限流算法。通过在单位时间内维护的计数器来控制单位时间的最大访问量。 假设限制每分钟请求量不超过60，设置一个">
+<meta property="og:description" content="Scrum介绍Scrum是什么Scrum是一种通过迭代实现增量软件开发过程，通常用在敏捷软件开发中。在这个框架中，整个开发过程由若干个短的迭代周期组成，一个短的迭代周期称为一个Sprint，每个Sprint的建议长度是一至四周。在Scrum中，使用产品Backlog来管理产品的需求，产品backlog是一个按照商业价值排序的需求列表，列表条目的体现形式通常为用户故事。Scrum团队总是先开发对客户">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/04/24/20220424-flow-control/count">
-<meta property="og:image" content="http://example.com/2022/04/24/20220424-flow-control/sliding-window.png">
-<meta property="og:image" content="http://example.com/2022/04/24/20220424-flow-control/leaky-bucket.png">
-<meta property="og:image" content="http://example.com/2022/04/24/20220424-flow-control/token-bucket.png">
-<meta property="article:published_time" content="2022-04-24T11:25:00.000Z">
-<meta property="article:modified_time" content="2022-04-24T11:31:18.935Z">
+<meta property="og:image" content="http://example.com/2022/06/26/20220626-scrum-introduction/flow.png">
+<meta property="article:published_time" content="2022-06-26T07:55:28.000Z">
+<meta property="article:modified_time" content="2022-06-26T11:13:25.193Z">
 <meta property="article:author" content="Dong">
-<meta property="article:tag" content="流控">
-<meta property="article:tag" content="分布式">
+<meta property="article:tag" content="软件工程">
+<meta property="article:tag" content="敏捷开发">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/04/24/20220424-flow-control/count">
+<meta name="twitter:image" content="http://example.com/2022/06/26/20220626-scrum-introduction/flow.png">
   
   
-  <title>常见的限流算法介绍和选型 - Aha moment</title>
+  <title>Scrum介绍 - Aha moment</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -194,7 +191,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="常见的限流算法介绍和选型">
+            <span class="h2" id="subtitle" title="Scrum介绍">
               
             </span>
 
@@ -204,8 +201,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-24 19:25" pubdate>
-        2022年4月24日 晚上
+      <time datetime="2022-06-26 15:55" pubdate>
+        2022年6月26日 下午
       </time>
     </span>
   
@@ -215,7 +212,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.1k 字
     </span>
   
 
@@ -224,7 +221,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12 分钟
+      10 分钟
     </span>
   
 
@@ -253,71 +250,50 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">常见的限流算法介绍和选型</h1>
+            <h1 style="display: none">Scrum介绍</h1>
             
             <div class="markdown-body">
-              <h1 id="常见的限流算法介绍和选型"><a href="#常见的限流算法介绍和选型" class="headerlink" title="常见的限流算法介绍和选型"></a>常见的限流算法介绍和选型</h1><p>近期接了一个可靠性提升的任务，要求系统能在10倍规格负载下保持不崩溃，仍能处理性能规格的业务。这里需要用到限流（也称流控）的方式去控制流入的请求数量，也借此机会好好梳理了常见的限流算法，并分析了下优缺点，方便后面进行选型。</p>
-<h2 id="计数器"><a href="#计数器" class="headerlink" title="计数器"></a>计数器</h2><p>计数器算法又称固定窗口算法，是最简单的限流算法。通过在单位时间内维护的计数器来控制单位时间的最大访问量。</p>
-<p>假设限制每分钟请求量不超过60，设置一个计数器，当请求到达时如果计数器到达阈值，则拒绝请求，否则计数器加1；每分钟重置计数器为0。</p>
-<p>计数器算法的优点是易于实现，且内存占用小，只需要存储当前时间窗口的计数。但是它会有临界问题，在两个时间窗口的交界处，瞬时流量可能达到2n。<br><img src="/2022/04/24/20220424-flow-control/count" srcset="/img/loading.gif" lazyload alt="count.png"></p>
-<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><p>为了应对瞬时流量，我们基于计数器算法的基础上，将固定窗口进一步划分为多个格子，这样窗口每次向后移动一小格，然后计算当前窗口内的请求总数是否超过阈值。</p>
-<p>[<img src="/2022/04/24/20220424-flow-control/sliding-window.png" srcset="/img/loading.gif" lazyload alt="sliding-window.png"></p>
-<p>滑动窗口解决了计数器的舒适流量高峰的问题，但是当窗口流量高于阈值时，多余的流量会被丢弃。我们实际应用中更希望可以削峰平谷，使流量可以平滑达到系统，显然滑动窗口不能帮我们做到这一点。</p>
-<h2 id="漏桶"><a href="#漏桶" class="headerlink" title="漏桶"></a>漏桶</h2><p>漏桶算法（Leaky Bucket），请求就像水一样以任意速度注入漏桶，而桶会按照固定的速率将水漏掉；当注入速度持续大于漏出的速度时，漏桶会变满，此时新进入的请求将会被丢弃。<strong>限流</strong>和<strong>整形</strong>是漏桶算法的两个核心能力<br><img src="/2022/04/24/20220424-flow-control/leaky-bucket.png" srcset="/img/loading.gif" lazyload alt="leaky-bucket"><br>桶算法存在目的主要是用来<strong>平滑突发的流量</strong>，提供一种机制来确保网络中的突发流量被整合成平滑稳定的额流量。</p>
-<p>不过由于漏桶对流量的控制过于严格，在有些场景下<strong>不能充分使用系统资源</strong>，因为漏桶的漏出速率是固定的，即使在某一时刻下游能够处理更大的流量，漏桶也不允许突发流量通过。</p>
-<h2 id="令牌桶"><a href="#令牌桶" class="headerlink" title="令牌桶"></a>令牌桶</h2><p>怎样才能够在限制流量速率的前提下，又能够允许突发流量呢？令牌桶算法就可以做到。令牌桶算法是以恒定速率向令牌桶发送令牌，请求到达时，尝试从令牌桶中拿令牌，只有拿到令牌才能够放行，否则将会被拒绝。<br><img src="/2022/04/24/20220424-flow-control/token-bucket.png" srcset="/img/loading.gif" lazyload alt="token-bucket.png"><br>令牌桶具有以下特点：</p>
-<ol>
-<li>以恒定的速率发放令牌，假设限流速率为v/s，则表示每1/v秒发放一个令牌</li>
-<li>假设令牌桶容量是b，如果令牌桶已满，则新的令牌会被丢弃</li>
-<li>请求能够通过限流器的前提是令牌桶中有令牌</li>
+              <h1 id="Scrum介绍"><a href="#Scrum介绍" class="headerlink" title="Scrum介绍"></a>Scrum介绍</h1><h2 id="Scrum是什么"><a href="#Scrum是什么" class="headerlink" title="Scrum是什么"></a>Scrum是什么</h2><p>Scrum是一种通过迭代实现增量软件开发过程，通常用在敏捷软件开发中。在这个框架中，整个开发过程由若干个短的迭代周期组成，一个短的迭代周期称为一个<strong>Sprint</strong>，每个Sprint的建议长度是一至四周。在Scrum中，使用产品Backlog来管理产品的需求，<strong>产品backlog</strong>是一个按照商业价值排序的需求列表，列表条目的体现形式通常为用户故事。Scrum团队总是先开发对客户具有较高价值的需求。在Sprint中，Scrum团队从产品Backlog中挑选最高优先级的需求进行开发。挑选的需求在Sprint计划会议上经过讨论、分析和估算得到相应的任务列表，我们称它为<strong>Sprint backlog</strong>。在每个迭代结束时，Scrum团队将递交潜在可交付的产品增量。 Scrum起源于软件开发项目，但它适用于任何复杂的或是创新性的项目。</p>
+<p><img src="/2022/06/26/20220626-scrum-introduction/flow.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="Scrum框架-3355"><a href="#Scrum框架-3355" class="headerlink" title="Scrum框架 3355"></a>Scrum框架 3355</h2><h3 id="3个角色"><a href="#3个角色" class="headerlink" title="3个角色"></a>3个角色</h3><ol>
+<li><p>产品负责人</p>
+</li>
+<li><p>Scrum Master</p>
+</li>
+<li><p>Team</p>
+</li>
 </ol>
-<p>令牌桶算法中值得关注的参数有两个，即限流速率v/s，和令牌桶容量b；速率a表示限流器一般情况下的限流速率，而b则是burst的简写，表示限流器允许的最大突发流量。</p>
-<p>比如b=10，当令牌桶满的时候有10个可用令牌，此时允许10个请求同时通过限流器（<strong>允许流量一定程度的突发</strong>），这10个请求瞬间消耗完令牌后，后续的流量只能按照速率r通过限流器。</p>
-<h2 id="几种算法的比较"><a href="#几种算法的比较" class="headerlink" title="几种算法的比较"></a>几种算法的比较</h2><table>
-<thead>
-<tr>
-<th>算法</th>
-<th>参数</th>
-<th>时空复杂度</th>
-<th>是否可以限制突发流量</th>
-<th>平滑限流</th>
-<th>分布式场景下实现难度</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>计数器</td>
-<td>时间窗口T、访问量C</td>
-<td>时间复杂度O(1)<br>空间复杂度O(1)</td>
-<td>否</td>
-<td>否</td>
-<td>简单</td>
-</tr>
-<tr>
-<td>滑动窗口</td>
-<td>时间窗口T、访问量C、每次移动长度t</td>
-<td>时间复杂度O(T/t)<br>空间复杂度O(T/t)</td>
-<td>是</td>
-<td>否</td>
-<td>中等</td>
-</tr>
-<tr>
-<td>漏桶</td>
-<td>队列长度L、流出速率v</td>
-<td>时间复杂度O(1)<br>空间复杂度O(L)</td>
-<td>是</td>
-<td>是</td>
-<td>困难</td>
-</tr>
-<tr>
-<td>令牌桶</td>
-<td>队列长度L、令牌产生速率v</td>
-<td>时间复杂度O(1)<br>空间复杂度O(L)</td>
-<td>是</td>
-<td>是</td>
-<td>困难</td>
-</tr>
-</tbody></table>
-<p>以上算法其实都需要我们预先知道系统可以接受的访问速率，为此我们需要先做一下压测。但是有的场景，系统可以接受的访问速率是变化的，随着系统所在机器的CPU、内存大小不同，此时还使用固定的流控限制就不太合适了。所以我们需要一种自适应的流控策略。</p>
+<h3 id="3个工件"><a href="#3个工件" class="headerlink" title="3个工件"></a>3个工件</h3><ol>
+<li><p>产品Backlog</p>
+</li>
+<li><p>Sprint Backlog</p>
+</li>
+<li><p>产品增量</p>
+</li>
+</ol>
+<h3 id="5个事件"><a href="#5个事件" class="headerlink" title="5个事件"></a>5个事件</h3><ol>
+<li><p>Sprint</p>
+</li>
+<li><p>Sprint计划会议</p>
+</li>
+<li><p>每日站会</p>
+</li>
+<li><p>Sprint评审会议</p>
+</li>
+<li><p>Sprint回顾会议</p>
+</li>
+</ol>
+<h3 id="5个价值"><a href="#5个价值" class="headerlink" title="5个价值"></a>5个价值</h3><ol>
+<li>承诺</li>
+<li>专注</li>
+<li>开放</li>
+<li>尊重</li>
+<li>勇气</li>
+</ol>
+<h2 id="Scrum理论基础-三大支柱"><a href="#Scrum理论基础-三大支柱" class="headerlink" title="Scrum理论基础-三大支柱"></a>Scrum理论基础-三大支柱</h2><h4 id="透明性（Transparency）"><a href="#透明性（Transparency）" class="headerlink" title="透明性（Transparency）"></a>透明性（Transparency）</h4><p>透明度是指，在软件开发过程的各个环节保持高度的可见性，影响交付成果的各个方面对于参与交付的所有人、管理生产结果的人保持透明。管理生产成果的人不仅要能够看到过程的这些方面，而且必须理解他们看到的内容。也就是说，当某个人在检验一个过程，并确信某一个任务已经完成时，这个完成必须等同于他们对完成的定义。</p>
+<h4 id="检验（Inspection）"><a href="#检验（Inspection）" class="headerlink" title="检验（Inspection）"></a>检验（Inspection）</h4><p>开发过程中的各方面必须做到足够频繁地检验，确保能够及时发现过程中的重大偏差。在确定检验频率时，需要考虑到检验会引起所有过程发生变化。当规定的检验频率超出了过程检验所能容许的程度，那么就会出现问题。幸运的是，软件开发并不会出现这种情况。另一个因素就是检验工作成果人员的技能水平和积极性。</p>
+<h4 id="适应（Adaptation）"><a href="#适应（Adaptation）" class="headerlink" title="适应（Adaptation）"></a>适应（Adaptation）</h4><p>如果检验人员检验的时候发现过程中的一个或多个方面不满足验收标准，并且最终产品是不合格的，那么便需要对过程或是材料进行调整。调整工作必须尽快实施，以减少进一步的偏差。</p>
+<p>Scrum中通过三个活动进行检验和适应：每日例会检验Sprint目标的进展，做出调整，从而优化次日的工作价值；Sprint评审和计划会议检验发布目标的进展，做出调整，从而优化下一个Sprint的工作价值；Sprint回顾会议是用来回顾已经完成的Sprint，并且确定做出什么样的改善可以使接下来的Sprint更加高效、更加令人满意，并且工作更快乐。</p>
 
             </div>
             <hr>
@@ -335,9 +311,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%B5%81%E6%8E%A7/">流控</a>
+                      <a class="hover-with-bg" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+                      <a class="hover-with-bg" href="/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/">敏捷开发</a>
                     
                   </div>
                 
@@ -354,18 +330,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/26/20220626-scrum-introduction/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Scrum介绍</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/10/20220402-relection-on-career-growth/">
-                        <span class="hidden-mobile">五年回顾：对程序员职业成长的思考</span>
+                      <a href="/2022/04/24/20220424-flow-control/">
+                        <span class="hidden-mobile">常见的限流算法介绍和选型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

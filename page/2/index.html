@@ -17,15 +17,15 @@
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://example.com/categories/index.html">
+<meta property="og:title" content="Aha moment">
+<meta property="og:url" content="http://example.com/page/2/index.html">
 <meta property="og:site_name" content="Aha moment">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Dong">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>分类 - Aha moment</title>
+  <title>Aha moment</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -55,7 +55,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -168,13 +168,17 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="分类">
+            <span class="h2" id="subtitle" title="行不尽，行不尽，一路青山">
               
             </span>
 
             
           </div>
 
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
           
         </div>
       </div>
@@ -185,7 +189,7 @@
     
       <div class="container nopadding-x-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
@@ -193,176 +197,64 @@
                 
 
 
-
-
-
-<div class="category-list">
-  
-  
-  
-  
+  <div class="row mx-auto index-card">
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-a95dd3e179418be1ecd2a719a22db70e" role="tab" data-toggle="collapse" href="#collapse-a95dd3e179418be1ecd2a719a22db70e"
-        aria-expanded="false"
-      >
-        技术
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>9</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-a95dd3e179418be1ecd2a719a22db70e" role="tabpanel" aria-labelledby="heading-a95dd3e179418be1ecd2a719a22db70e">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         
-        
+        <a href="/2022/01/09/20220207-sorting-algorithm/" target="_self">
+          排序算法整理
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/09/20220207-sorting-algorithm/" target="_self">
           
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/06/26/20220626-scrum-introduction/" class="list-group-item list-group-item-action">
-          <span class="category-post">Scrum介绍</span>
+          冒泡排序思想冒泡排序是入门级的排序算法，其思想就是一边比较挨着的两个位置元素的大小一边两两交换，每次都会将最大值冒泡到最后一位。 代码实现代码如下： 1234567891011func bubbleSort(num []int) []int &amp;#123;    n :&#x3D; len(num)    for i :&#x3D; 0; i &lt; n; i++ &amp;#123;        for j :&#x3D; 0;
         </a>
-      
-    
-      
-      
-        <a href="/2022/04/24/20220424-flow-control/" class="list-group-item list-group-item-action">
-          <span class="category-post">常见的限流算法介绍和选型</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/04/01/20220401-software-develop-laws/" class="list-group-item list-group-item-action">
-          <span class="category-post">一些有趣的软件开发定律</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/03/30/20220330-record-to-slove-the-problem-CPU-exceeds-100/" class="list-group-item list-group-item-action">
-          <span class="category-post">记一次线上CPU占用超过100%问题定位</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/03/27/20220327-bitwise/" class="list-group-item list-group-item-action">
-          <span class="category-post">位运算</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/03/13/20220313-mqtt-session/" class="list-group-item list-group-item-action">
-          <span class="category-post">MQTT会话机制</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/02/28/20220228-signal-and-semaphore/" class="list-group-item list-group-item-action">
-          <span class="category-post">信号和信号量</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/02/25/20220225-getting-to-know-mqtt/" class="list-group-item list-group-item-action">
-          <span class="category-post">认识MQTT协议</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/01/09/20220207-sorting-algorithm/" class="list-group-item list-group-item-action">
-          <span class="category-post">排序算法整理</span>
-        </a>
-      
-    
-  </div>
+      </p>
 
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-09 23:33" pubdate>
+              2022-01-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+              <a href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>
+            
+          </div>
         
       </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-0b8cbf5e7000f139e39f11e04135e9d6" role="tab" data-toggle="collapse" href="#collapse-0b8cbf5e7000f139e39f11e04135e9d6"
-        aria-expanded="false"
-      >
-        好文快译
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E5%A5%BD%E6%96%87%E5%BF%AB%E8%AF%91/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-0b8cbf5e7000f139e39f11e04135e9d6" role="tabpanel" aria-labelledby="heading-0b8cbf5e7000f139e39f11e04135e9d6">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/01/18/20220209-five-minutes-to-understand-software-architecture-patterns/" class="list-group-item list-group-item-action">
-          <span class="category-post">五分钟理解软件架构模式</span>
-        </a>
-      
-    
+    </article>
   </div>
 
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-8936f53b23e9dfe2965d9e2ec23a4779" role="tab" data-toggle="collapse" href="#collapse-8936f53b23e9dfe2965d9e2ec23a4779"
-        aria-expanded="false"
-      >
-        随笔
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E9%9A%8F%E7%AC%94/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-8936f53b23e9dfe2965d9e2ec23a4779" role="tabpanel" aria-labelledby="heading-8936f53b23e9dfe2965d9e2ec23a4779">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/04/10/20220402-relection-on-career-growth/" class="list-group-item list-group-item-action">
-          <span class="category-post">五年回顾：对程序员职业成长的思考</span>
-        </a>
-      
-    
-  </div>
 
-        
-      </div>
-    </div>
-  
-</div>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
+
+
 
               </div>
             </div>
