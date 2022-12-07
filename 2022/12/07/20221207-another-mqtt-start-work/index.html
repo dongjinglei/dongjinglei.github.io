@@ -16,19 +16,40 @@
   <meta name="author" content="Dong">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://example.com/categories/index.html">
+    <meta name="description" content="AnotherMQTT立项起因想自己开发一个MQTT客户端的原因有以下两个：   1.目前的MQTT客户端，如MQTT.fx、MQTT.x界面卡顿，使用起来很难受。我因为工作原因经常需要调试MQTT的接口，因此一款好用的MQTT客户端对我的帮助非常大，但是目前我没有找到可以满足我的客户端。   2.工作的项目目前使用Electron开发客户端。Electron由于体积大、性能等原因受人诟病。新出的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AnotherMQTT立项">
+<meta property="og:url" content="http://example.com/2022/12/07/20221207-another-mqtt-start-work/index.html">
 <meta property="og:site_name" content="Aha moment">
+<meta property="og:description" content="AnotherMQTT立项起因想自己开发一个MQTT客户端的原因有以下两个：   1.目前的MQTT客户端，如MQTT.fx、MQTT.x界面卡顿，使用起来很难受。我因为工作原因经常需要调试MQTT的接口，因此一款好用的MQTT客户端对我的帮助非常大，但是目前我没有找到可以满足我的客户端。   2.工作的项目目前使用Electron开发客户端。Electron由于体积大、性能等原因受人诟病。新出的">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-07T13:22:48.000Z">
+<meta property="article:modified_time" content="2022-12-07T13:27:15.035Z">
 <meta property="article:author" content="Dong">
+<meta property="article:tag" content="MQTT">
+<meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>分类 - Aha moment</title>
+  <title>AnotherMQTT立项 - Aha moment</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -168,9 +189,43 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="分类">
+            <span class="h2" id="subtitle" title="AnotherMQTT立项">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-12-07 21:22" pubdate>
+        2022年12月7日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      549 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      5 分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -183,205 +238,100 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">AnotherMQTT立项</h1>
+            
+            <div class="markdown-body">
+              <h1 id="AnotherMQTT立项"><a href="#AnotherMQTT立项" class="headerlink" title="AnotherMQTT立项"></a>AnotherMQTT立项</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>想自己开发一个MQTT客户端的原因有以下两个：  </p>
+<p>1.目前的MQTT客户端，如MQTT.fx、MQTT.x界面卡顿，使用起来很难受。我因为工作原因经常需要调试MQTT的接口，因此一款好用的MQTT客户端对我的帮助非常大，但是目前我没有找到可以满足我的客户端。  </p>
+<p>2.工作的项目目前使用Electron开发客户端。Electron由于体积大、性能等原因受人诟病。新出的Tauri因为使用了系统自带的WebView2做前端和Rust做后端，因为有着很小的安装大小和很快的性能体验。为了提前为项目预研，使用Tauri开发一个简单的客户端工具试用一下。  </p>
+<h2 id="选型"><a href="#选型" class="headerlink" title="选型"></a>选型</h2><p>目前的想法是使用Tauri框架+前端React+后端Rust。这个选型没有经过太多的思考，仅仅是想试用一下新东西，一开始先当做玩票性质的项目来搞，要是能提升自己的工作体验就赚到。  </p>
+<h2 id="起名"><a href="#起名" class="headerlink" title="起名"></a>起名</h2><p>来自我非常喜欢的Redis客户端工具Another Redis Desktop Manager，总觉得名字中带着一种无厘头的幽默感。  </p>
+<h2 id="规划功能"><a href="#规划功能" class="headerlink" title="规划功能"></a>规划功能</h2><p>最初的规划功能选择了我最常使用的功能，后面开发完成了也可以继续增加  </p>
+<p>1.支持连接MQTT3.1协议的Broker  </p>
+<p>2.支持Publish和Subscribe功能  </p>
+<p>3.支持JSON格式预览  </p>
+<p>4.支持对订阅到消息内容进行搜索  </p>
 
-
-
-
-<div class="category-list">
-  
-  
-  
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-a95dd3e179418be1ecd2a719a22db70e" role="tab" data-toggle="collapse" href="#collapse-a95dd3e179418be1ecd2a719a22db70e"
-        aria-expanded="false"
-      >
-        技术
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>11</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-a95dd3e179418be1ecd2a719a22db70e" role="tabpanel" aria-labelledby="heading-a95dd3e179418be1ecd2a719a22db70e">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/12/07/20221207-another-mqtt-start-work/" class="list-group-item list-group-item-action">
-          <span class="category-post">AnotherMQTT立项</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/12/03/20221203-solid/" class="list-group-item list-group-item-action">
-          <span class="category-post">SOLID：面向对象编程的五个基本原则</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/06/26/20220626-scrum-introduction/" class="list-group-item list-group-item-action">
-          <span class="category-post">Scrum介绍</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/04/24/20220424-flow-control/" class="list-group-item list-group-item-action">
-          <span class="category-post">常见的限流算法介绍和选型</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/04/01/20220401-software-develop-laws/" class="list-group-item list-group-item-action">
-          <span class="category-post">一些有趣的软件开发定律</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/03/30/20220330-record-to-slove-the-problem-CPU-exceeds-100/" class="list-group-item list-group-item-action">
-          <span class="category-post">记一次线上CPU占用超过100%问题定位</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/03/27/20220327-bitwise/" class="list-group-item list-group-item-action">
-          <span class="category-post">位运算</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/03/13/20220313-mqtt-session/" class="list-group-item list-group-item-action">
-          <span class="category-post">MQTT会话机制</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/02/28/20220228-signal-and-semaphore/" class="list-group-item list-group-item-action">
-          <span class="category-post">信号和信号量</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/02/25/20220225-getting-to-know-mqtt/" class="list-group-item list-group-item-action">
-          <span class="category-post">认识MQTT协议</span>
-        </a>
-      
-    
-      
-      
-        <a href="/categories/%E6%8A%80%E6%9C%AF/" class="list-group-item list-group-item-action">
-          <span class="category-post">More...</span>
-        </a>
-        
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-0b8cbf5e7000f139e39f11e04135e9d6" role="tab" data-toggle="collapse" href="#collapse-0b8cbf5e7000f139e39f11e04135e9d6"
-        aria-expanded="false"
-      >
-        好文快译
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E5%A5%BD%E6%96%87%E5%BF%AB%E8%AF%91/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-0b8cbf5e7000f139e39f11e04135e9d6" role="tabpanel" aria-labelledby="heading-0b8cbf5e7000f139e39f11e04135e9d6">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/01/18/20220209-five-minutes-to-understand-software-architecture-patterns/" class="list-group-item list-group-item-action">
-          <span class="category-post">五分钟理解软件架构模式</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-8936f53b23e9dfe2965d9e2ec23a4779" role="tab" data-toggle="collapse" href="#collapse-8936f53b23e9dfe2965d9e2ec23a4779"
-        aria-expanded="false"
-      >
-        随笔
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E9%9A%8F%E7%AC%94/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-8936f53b23e9dfe2965d9e2ec23a4779" role="tabpanel" aria-labelledby="heading-8936f53b23e9dfe2965d9e2ec23a4779">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/04/10/20220402-relection-on-career-growth/" class="list-group-item list-group-item-action">
-          <span class="category-post">五年回顾：对程序员职业成长的思考</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-</div>
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MQTT/">MQTT</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/03/20221203-solid/">
+                        <span class="hidden-mobile">SOLID：面向对象编程的五个基本原则</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -488,6 +438,19 @@
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 

@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>AnotherMQTT立项</title>
+    <link href="/2022/12/07/20221207-another-mqtt-start-work/"/>
+    <url>/2022/12/07/20221207-another-mqtt-start-work/</url>
+    
+    <content type="html"><![CDATA[<h1 id="AnotherMQTT立项"><a href="#AnotherMQTT立项" class="headerlink" title="AnotherMQTT立项"></a>AnotherMQTT立项</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>想自己开发一个MQTT客户端的原因有以下两个：  </p><p>1.目前的MQTT客户端，如MQTT.fx、MQTT.x界面卡顿，使用起来很难受。我因为工作原因经常需要调试MQTT的接口，因此一款好用的MQTT客户端对我的帮助非常大，但是目前我没有找到可以满足我的客户端。  </p><p>2.工作的项目目前使用Electron开发客户端。Electron由于体积大、性能等原因受人诟病。新出的Tauri因为使用了系统自带的WebView2做前端和Rust做后端，因为有着很小的安装大小和很快的性能体验。为了提前为项目预研，使用Tauri开发一个简单的客户端工具试用一下。  </p><h2 id="选型"><a href="#选型" class="headerlink" title="选型"></a>选型</h2><p>目前的想法是使用Tauri框架+前端React+后端Rust。这个选型没有经过太多的思考，仅仅是想试用一下新东西，一开始先当做玩票性质的项目来搞，要是能提升自己的工作体验就赚到。  </p><h2 id="起名"><a href="#起名" class="headerlink" title="起名"></a>起名</h2><p>来自我非常喜欢的Redis客户端工具Another Redis Desktop Manager，总觉得名字中带着一种无厘头的幽默感。  </p><h2 id="规划功能"><a href="#规划功能" class="headerlink" title="规划功能"></a>规划功能</h2><p>最初的规划功能选择了我最常使用的功能，后面开发完成了也可以继续增加  </p><p>1.支持连接MQTT3.1协议的Broker  </p><p>2.支持Publish和Subscribe功能  </p><p>3.支持JSON格式预览  </p><p>4.支持对订阅到消息内容进行搜索  </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MQTT</tag>
+      
+      <tag>工具</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SOLID：面向对象编程的五个基本原则</title>
     <link href="/2022/12/03/20221203-solid/"/>
     <url>/2022/12/03/20221203-solid/</url>
